@@ -3,11 +3,11 @@ from sklearn.model_selection import train_test_split
 from sklearn.model_selection import RandomizedSearchCV
 
 parametros = {
-    'n_estimators': [100, 200, 300, 400, 500],
-    'max_depth': [None, 10, 20, 30, 40, 50],
+    'n_estimators': [100, 200, 300, 400],
+    'max_depth': [None, 10, 20, 30, 40],
     'min_samples_split': [2, 5, 10],
     'min_samples_leaf': [1, 2, 4],
-    'max_features': [None, 'sqrt', 'log2']
+    'max_features': ['sqrt', 'log2']
 }
 
 def testar(df_treino):

@@ -1,12 +1,12 @@
 import pandas as pd
 from sklearn.preprocessing import StandardScaler
-from sklearn.impute import KNNImputer
+from sklearn.impute import KNNImputer, SimpleImputer # Adicionado SimpleImputer
 import numpy as np
 
 def imputar_valores(df, imputer=None):
     colunas = df.columns
     if imputer is None:
-        imputer = KNNImputer(n_neighbors=5)
+        imputer = SimpleImputer(strategy='mean') 
         df_imputado = pd.DataFrame(imputer.fit_transform(df), columns=colunas)
         return df_imputado, imputer
     else:

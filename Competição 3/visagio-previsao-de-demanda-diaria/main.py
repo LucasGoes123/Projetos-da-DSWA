@@ -55,13 +55,14 @@ def main():
     print("Dados de teste processados:")
     print(df_teste_processado.head())
 
-    random_search = teste.testar(df_treino_processado)
-    random_search.fit(
+    modelo, features_selecionadas = teste.testar(df_treino_processado)
+    df_treino_processado = df_treino_processado[features_selecionadas + ["demanda"]]
+    df_teste_processado = df_teste_processado[features_selecionadas + ["id"]]
+    modelo.fit(
         df_treino_processado.drop(columns=["demanda"]),
         df_treino_processado["demanda"]
     )
-    gerar_submissao(random_search, df_teste_processado)
-
+    gerar_submissao(modelo, df_teste_processado)
 
 
 if __name__ == "__main__":
